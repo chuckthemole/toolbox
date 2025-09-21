@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Simple scp wrapper to copy dotfiles to a remote EC2 instance
+# Simple scp wrapper to copy localfiles to a remote EC2 instance
 # Usage:
-#   ./push-dotfiles.sh -k ~/.ssh/key.pem -d user@host [files...]
-#   ./push-dotfiles.sh -k ~/.ssh/key.pem -d user@host --bash
+#   ./push-localfiles.sh -k ~/.ssh/key.pem -d user@host [files...]
+#   ./push-localfiles.sh -k ~/.ssh/key.pem -d user@host --bash
 #
 # Optional logging:
-#   ./push-dotfiles.sh -k key.pem -d user@host --bash -o scp.log
+#   ./push-localfiles.sh -k key.pem -d user@host --bash -o scp.log
 
 set -e
 
@@ -16,13 +16,13 @@ show_help() {
   echo "  -k <pem>       Path to your .pem private key (required)"
   echo "  -d <dest>      Destination in format user@ip (required)"
   echo "  -o <file>      Log verbose scp output to file (optional)"
-  echo "  --bash         Push common bash dotfiles (~/.bashrc, ~/.bash_profile, etc.)"
+  echo "  --bash         Push common bash localfiles (~/.bashrc, ~/.bash_profile, etc.)"
   echo "  files...       List of files to push manually"
   echo ""
   echo "Examples:"
-  echo "  $0 -k ~/.ssh/buildshift-rsa.pem -d debian@13.58.250.41 --bash"
-  echo "  $0 -k ~/.ssh/buildshift-rsa.pem -d debian@13.58.250.41 ~/.vimrc ~/.gitconfig"
-  echo "  $0 -k ~/.ssh/buildshift-rsa.pem -d debian@13.58.250.41 --bash -o scp.log"
+  echo "  $0 -k ~/.ssh/buildshift-rsa.pem -d user@host --bash"
+  echo "  $0 -k ~/.ssh/buildshift-rsa.pem -d user@host ~/.vimrc ~/.gitconfig"
+  echo "  $0 -k ~/.ssh/buildshift-rsa.pem -d user@host --bash -o scp.log"
 }
 
 # Defaults
